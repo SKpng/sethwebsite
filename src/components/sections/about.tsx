@@ -1,149 +1,65 @@
 "use client"
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import { actorData, training, skills } from '@/data/actor'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { GraduationCap, Star, MapPin, Mail, Phone } from 'lucide-react'
-
 export function About() {
-  const groupedSkills = skills.reduce((acc, skill) => {
-    if (!acc[skill.category]) {
-      acc[skill.category] = []
-    }
-    acc[skill.category].push(skill)
-    return acc
-  }, {} as Record<string, typeof skills>)
-
   return (
-    <section id="about" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl sm:text-5xl font-bold font-serif text-gray-900 mb-6">
-            About Seth
-          </h2>
-          <div className="w-24 h-1 bg-gray-900 mx-auto"></div>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Bio */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <Card className="h-full">
-              <CardHeader>
-                <CardTitle className="text-2xl font-serif">Professional Bio</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 leading-relaxed text-lg mb-6">
-                  {actorData.bio}
+    <section id="about" className="section bg-white">
+      <div className="container">
+        <h2 className="section-title">About</h2>
+        <p className="section-subtitle">
+          A versatile actor with a passion for storytelling and character development
+        </p>
+        
+        <div className="grid grid-cols-2 gap-16">
+          <div>
+            <div className="card">
+              <h3 className="card-title">Professional Bio</h3>
+              <div className="card-content">
+                <p>
+                  Seth Karallis is a talented actor based in London, known for his compelling 
+                  performances across theater, film, and television. With classical training 
+                  and a natural ability to bring complex characters to life, Seth approaches 
+                  each role with dedication and authenticity.
                 </p>
+                <br />
+                <p>
+                  His passion for storytelling drives his commitment to excellence in every 
+                  project, whether it&apos;s a Shakespearean production or a contemporary film. 
+                  Seth believes in the power of performance to connect audiences with the 
+                  human experience.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <div className="card">
+              <h3 className="card-title">Training & Education</h3>
+              <div className="card-content">
+                <div style={{ marginBottom: '24px' }}>
+                  <h4 style={{ fontWeight: '600', marginBottom: '8px' }}>Royal Academy of Dramatic Art (RADA)</h4>
+                  <p style={{ color: '#6b7280', marginBottom: '4px' }}>BA (Hons) Acting • 2019</p>
+                  <p style={{ fontSize: '14px', color: '#9ca3af' }}>
+                    Intensive classical training in voice, movement, and character development
+                  </p>
+                </div>
                 
-                {/* Contact Info */}
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <MapPin className="h-5 w-5 text-gray-600" />
-                    <span className="text-gray-700">{actorData.location}</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <Mail className="h-5 w-5 text-gray-600" />
-                    <a 
-                      href={`mailto:${actorData.email}`}
-                      className="text-gray-700 hover:text-gray-900 transition-colors"
-                    >
-                      {actorData.email}
-                    </a>
-                  </div>
-                  {actorData.phone && (
-                    <div className="flex items-center space-x-3">
-                      <Phone className="h-5 w-5 text-gray-600" />
-                      <span className="text-gray-700">{actorData.phone}</span>
-                    </div>
-                  )}
+                <div style={{ marginBottom: '24px' }}>
+                  <h4 style={{ fontWeight: '600', marginBottom: '8px' }}>Guildhall School of Music & Drama</h4>
+                  <p style={{ color: '#6b7280', marginBottom: '4px' }}>Summer Intensive • 2018</p>
+                  <p style={{ fontSize: '14px', color: '#9ca3af' }}>
+                    Advanced scene study and contemporary performance techniques
+                  </p>
                 </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Training & Skills */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            {/* Training */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-xl font-serif flex items-center">
-                  <GraduationCap className="h-6 w-6 mr-2" />
-                  Training & Education
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {training.map((item, index) => (
-                    <motion.div
-                      key={item.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                      className="border-l-4 border-gray-200 pl-4"
-                    >
-                      <h4 className="font-semibold text-gray-900">{item.institution}</h4>
-                      <p className="text-gray-700">{item.program}</p>
-                      {item.instructor && (
-                        <p className="text-sm text-gray-600">with {item.instructor}</p>
-                      )}
-                      <p className="text-sm text-gray-500">{item.year}</p>
-                    </motion.div>
-                  ))}
+                
+                <div>
+                  <h4 style={{ fontWeight: '600', marginBottom: '8px' }}>Special Skills</h4>
+                  <p style={{ fontSize: '14px', color: '#6b7280' }}>
+                    Fluent English • RP Accent • Stage Combat • Guitar • Piano
+                  </p>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Skills */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-xl font-serif flex items-center">
-                  <Star className="h-6 w-6 mr-2" />
-                  Special Skills
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {Object.entries(groupedSkills).map(([category, categorySkills]) => (
-                    <div key={category}>
-                      <h4 className="font-semibold text-gray-900 capitalize mb-2">
-                        {category}
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {categorySkills.map((skill) => (
-                          <span
-                            key={skill.id}
-                            className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
-                          >
-                            {skill.name}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

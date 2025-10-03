@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     siteName: "Seth Karallis Portfolio",
+    url: "https://sethkarallis.com",
   },
   twitter: {
     card: "summary_large_image",
@@ -34,6 +35,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  other: {
+    'cache-control': 'no-cache, no-store, must-revalidate',
+    'pragma': 'no-cache',
+    'expires': '0'
+  }
 };
 
 export default function RootLayout({
@@ -43,6 +49,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+      <head>
+        <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta httpEquiv="Pragma" content="no-cache" />
+        <meta httpEquiv="Expires" content="0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://sethkarallis.com" />
+      </head>
       <body className={`${inter.className} antialiased`}>
         <Header />
         <main>{children}</main>

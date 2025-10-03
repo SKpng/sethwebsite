@@ -33,7 +33,5 @@
         }
       ]
     }
-  ],
-  "domains": ["sethkarallis.com", "www.sethkarallis.com"],
-  "alias": ["sethkarallis.com"]
+  ]
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import "./globals.css"
 import { Header } from "@/components/common/header"
+import { PasswordProtection } from "@/components/auth/password-protection"
 
 export const metadata: Metadata = {
   title: "Seth Karallis - Actor & Performer",
@@ -15,8 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        <main>{children}</main>
+        <PasswordProtection>
+          <Header />
+          <main>{children}</main>
+        </PasswordProtection>
       </body>
     </html>
   )
